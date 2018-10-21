@@ -6,8 +6,8 @@ import lombok.Data;
 public class SaleDate {
     public final String id;
     public final int day;
-    public final String dayOfWeek;
-    public final String quarterId;
-    public final String monthId;
+    public final int dayOfWeek;
+    public final int quarterId;
+    public final int monthId;
     public final String yearId;
 }
