@@ -3,6 +3,7 @@ package pl.nspd.models;
 import lombok.Data;
 
 import static pl.nspd.Constants.SEPARATOR;
+import static pl.nspd.util.DecimalUtil.round;
 
 @Data
 public class Invoice implements Model {
@@ -13,8 +14,8 @@ public class Invoice implements Model {
 
     public String toCsv() {
         return id + SEPARATOR
-                + resultPrice + SEPARATOR
-                + taxValue + SEPARATOR
-                + discount;
+                + round(resultPrice) + SEPARATOR
+                + round(taxValue) + SEPARATOR
+                + round(discount);
     }
 }

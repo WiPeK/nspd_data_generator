@@ -47,8 +47,9 @@ public class DataFacade {
         producers = ProducerGenerator.generate();
         payments = PaymentGenerator.generate();
         products = ProductGenerator.generate(categories, producers, authors);
-        invoices = InvoiceGenerator.generate();
-        sales = SaleGenerator.generate(clients, employees, saleDates, products, payments, channels, invoices);
+        SaleInvoice salesWIthInvoices = SaleGenerator.generate(clients, employees, saleDates, products, payments, channels);
+        invoices = salesWIthInvoices.invoices;
+        sales = salesWIthInvoices.sales;
     }
 
     private void generateCsv() {

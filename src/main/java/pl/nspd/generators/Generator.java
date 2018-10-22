@@ -140,7 +140,7 @@ public class Generator {
         return 1 + random.nextInt(100);
     }
 
-    private static <T> T randomFromSet(Set<T> set) {
+    public static <T> T randomFromSet(Set<T> set) {
         return set.stream().skip(Math.abs(random.nextInt() % set.size())).findFirst().get();
     }
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import java.time.LocalDate;
 
 import static pl.nspd.Constants.SEPARATOR;
+import static pl.nspd.util.DecimalUtil.round;
 
 
 @Data
@@ -24,6 +25,6 @@ public class Employee implements Model {
                 + address + SEPARATOR
                 + email + SEPARATOR
                 + dateOfEmployment + SEPARATOR
-                + salary;
+                + round(salary);
     }
 }

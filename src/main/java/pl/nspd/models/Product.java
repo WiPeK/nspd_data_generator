@@ -1,6 +1,7 @@
 package pl.nspd.models;
 
 import lombok.Data;
+import pl.nspd.util.DecimalUtil;
 
 import static pl.nspd.Constants.SEPARATOR;
 
@@ -19,6 +20,6 @@ public class Product implements Model {
                 + producerId + SEPARATOR
                 + authorId + SEPARATOR
                 + name + SEPARATOR
-                + price;
+                + DecimalUtil.round(price);
     }
 }
