@@ -3,7 +3,12 @@ package pl.nspd;
 import pl.nspd.generators.*;
 import pl.nspd.models.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Set;
+
+import static com.sun.activation.registries.LogSupport.log;
 
 public class DataFacade {
 
@@ -47,7 +52,39 @@ public class DataFacade {
     }
 
     private void generateCsv() {
-        // todo jak się da to refleksją jechać po kolekcji i każdy objekt.getDeclaredField.value split ','
+        createCsv((Set<Model>) (Object) quarters, "quarters");
+        createCsv((Set<Model>) (Object) authors, "authors");
+        createCsv((Set<Model>) (Object) categories, "categories");
+        createCsv((Set<Model>) (Object) channels, "channels");
+        createCsv((Set<Model>) (Object) clients, "clients");
+        createCsv((Set<Model>) (Object) dayOfWeeks, "dayOfWeeks");
+        createCsv((Set<Model>) (Object) months, "months");
+        createCsv((Set<Model>) (Object) years, "years");
+        createCsv((Set<Model>) (Object) saleDates, "saleDates");
+        createCsv((Set<Model>) (Object) employees, "employees");
+        createCsv((Set<Model>) (Object) producers, "producers");
+        createCsv((Set<Model>) (Object) payments, "payments");
+        createCsv((Set<Model>) (Object) products, "products");
+        createCsv((Set<Model>) (Object) invoices, "invoices");
+        createCsv((Set<Model>) (Object) sales, "sales");
+    }
+
+    private void createCsv(Set<Model> models, String name) {
+        File dir = makeBaseDir();
+        try (PrintWriter out = new PrintWriter(dir + "/" + name + ".csv")) {
+            models.forEach(model -> out.println(model.toCsv()));
+        } catch (FileNotFoundException x) {
+            log(x.toString());
+        }
+    }
+
+    private File makeBaseDir() {
+        File dir = new File("CSV files");
+        dir.mkdir();
+        return dir;
     }
 
 }
+
+
+

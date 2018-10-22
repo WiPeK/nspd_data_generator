@@ -2,8 +2,10 @@ package pl.nspd.models;
 
 import lombok.Data;
 
+import static pl.nspd.Constants.SEPARATOR;
+
 @Data
-public class Sale {
+public class Sale implements Model {
     public final String id;
     public final String clientId;
     public final String employeeId;
@@ -13,4 +15,16 @@ public class Sale {
     public final String channelId;
     public final int quantity;
     public final String invoiceId;
+
+    public String toCsv() {
+        return id + SEPARATOR
+                + channelId + SEPARATOR
+                + employeeId + SEPARATOR
+                + saleDateId + SEPARATOR
+                + productId + SEPARATOR
+                + paymentId + SEPARATOR
+                + channelId + SEPARATOR
+                + quantity + SEPARATOR
+                + invoiceId;
+    }
 }
