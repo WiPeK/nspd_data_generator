@@ -69,12 +69,36 @@ public class Generator {
         return randomFromSet(days).id;
     }
 
+    public static Day dayObj(Set<Day> days) {
+        return randomFromSet(days);
+    }
+
     public static String month(Set<Month> months) {
         return randomFromSet(months).id;
     }
 
     public static String year(Set<Year> years) {
         return randomFromSet(years).id;
+    }
+
+    public static String employee(Set<Employee> employees) {
+        return randomFromSet(employees).id;
+    }
+
+    public static String customer(Set<Customer> customers) {
+        return randomFromSet(customers).id;
+    }
+
+    public static String travel(Set<Travel> travels) {
+        return randomFromSet(travels).id;
+    }
+
+    public static String boughtChannel(Set<BoughtChannel> boughtChannels) {
+        return randomFromSet(boughtChannels).id;
+    }
+
+    public static String paymentMethod(Set<PaymentMethod> paymentMethods) {
+        return randomFromSet(paymentMethods).id;
     }
 
     public static int durationDays() {

@@ -44,6 +44,7 @@ public class ProjFacade {
         startingPlaces = StartingPlaceGenerator.generate(branchAddresses);
         paymentMethods = PaymentMethodGenerator.generate();
         travels = TravelGenerator.generate(travelDestinations, travelTypes, startingPlaces, days, months, years);
+        travelSales = TravelSalesGenerator.generate(employees, customers, days, months, years, travels, boughtChannels, paymentMethods);
     }
 
     private void generateCsv() {
