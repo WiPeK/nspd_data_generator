@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static pl.nspd.lab.generators.Generator.*;
+import static pl.nspd.common.util.GeneratorUtil.id;
 
 public class SaleDateGenerator {
 

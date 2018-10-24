@@ -23,7 +23,11 @@ public class GeneratorUtil {
     }
 
     public static <T> T randomFromSet(Set<T> set) {
-        return set.stream().skip(Math.abs(random.nextInt() % set.size())).findFirst().get();
+        try {
+            return set.stream().skip(Math.abs(random.nextInt() % set.size())).findFirst().get();
+        } catch (ArithmeticException e) {
+            return null;
+        }
     }
 
     public static String randomFromArray(String[] array) {

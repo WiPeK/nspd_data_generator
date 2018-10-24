@@ -27,7 +27,7 @@ public class TravelGenerator {
                 String travelType = travelType(travelTypes);
                 int numberOfPersons = numberOfPersons();
 
-                Day startDay = days.stream().filter(day -> day.id.equals(day(days))).findFirst().get();
+                Day startDay = dayObj(days);
                 Month startMonth = months.stream().filter(month -> month.id.equals(startDay.monthId)).findFirst().get();
                 Year startYear = years.stream().filter(year -> year.id.equals(startMonth.yearId)).findFirst().get();
 

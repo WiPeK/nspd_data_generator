@@ -7,11 +7,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static pl.nspd.lab.data.ChannelData.channels;
+import static pl.nspd.common.util.GeneratorUtil.id;
 
 public class ChannelGenerator {
     public static Set<Channel> generate() {
         return Arrays.stream(channels)
-                .map(channel -> new Channel(Generator.id(), channel))
+                .map(channel -> new Channel(id(), channel))
                 .collect(Collectors.toSet());
     }
 }

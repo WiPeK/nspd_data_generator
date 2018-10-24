@@ -29,15 +29,15 @@ public class TravelSalesGenerator {
 
             boolean isDayBeforeTravel = false;
             Day day = dayObj(days);
-            while(!isDayBeforeTravel) {
-                day = dayObj(days);
-                Day finalDay = day;
-                Month month = months.stream().filter(mnth -> mnth.id.equals(finalDay.monthId)).findFirst().get();
-                Year year = years.stream().filter(yr -> yr.id.equals(month.yearId)).findFirst().get();
-                if (LocalDate.of(year.year, month.month, day.day).isBefore(travel.startDate)) {
-                    isDayBeforeTravel = true;
-                }
-            }
+//            while(!isDayBeforeTravel) {
+//                day = dayObj(days);
+//                Day finalDay = day;
+//                Month month = months.stream().filter(mnth -> mnth.id.equals(finalDay.monthId)).findFirst().get();
+//                Year year = years.stream().filter(yr -> yr.id.equals(month.yearId)).findFirst().get();
+//                if (LocalDate.of(year.year, month.month, day.day).isBefore(travel.startDate)) {
+//                    isDayBeforeTravel = true;
+//                }
+//            }
 
             travelSales.add(new TravelSale(
                     id(),

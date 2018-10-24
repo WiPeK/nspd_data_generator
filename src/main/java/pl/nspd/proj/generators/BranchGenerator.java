@@ -14,7 +14,7 @@ public class BranchGenerator {
         Set<Branch> branches = new HashSet<>();
         int branchNumber = 0;
         for (BranchAddress branchesAddress : branchesAddresses) {
-            branches.add(new Branch(id(), branchNames[branchNumber++], branchesAddress.id));
+            branches.add(new Branch(id(), branchNames[(branchNumber++)%branchNames.length], branchesAddress.id));
         }
         return branches;
     }

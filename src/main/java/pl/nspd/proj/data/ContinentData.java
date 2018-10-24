@@ -9,7 +9,7 @@ public class ContinentData {
 
     public static final Map<String, Set<String>> continentCountries = new HashMap<>();
 
-    {
+    static {
         Set<String> northAmericaCountries = new HashSet<>();
         northAmericaCountries.add("USA");
         northAmericaCountries.add("CANADA");

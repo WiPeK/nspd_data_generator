@@ -1,9 +1,13 @@
 package pl.nspd.proj;
 
+import pl.nspd.common.model.Model;
 import pl.nspd.proj.generators.*;
 import pl.nspd.proj.models.*;
 
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import static pl.nspd.common.util.CsvGenerator.createCsv;
 
 public class ProjFacade {
 
@@ -48,6 +52,24 @@ public class ProjFacade {
     }
 
     private void generateCsv() {
+        createCsv(toModelSet(years), "years");
+        createCsv(toModelSet(months), "months");
+        createCsv(toModelSet(days), "days");
+        createCsv(toModelSet(boughtChannels), "boughtChannels");
+        createCsv(toModelSet(branchAddresses), "branchAddresses");
+        createCsv(toModelSet(branches), "branches");
+        createCsv(toModelSet(employees), "employees");
+        createCsv(toModelSet(customerAddresses), "customerAddresses");
+        createCsv(toModelSet(customers), "customers");
+        createCsv(toModelSet(travelTypes), "travelTypes");
+        createCsv(toModelSet(travelDestinations), "travelDestinations");
+        createCsv(toModelSet(startingPlaces), "startingPlaces");
+        createCsv(toModelSet(paymentMethods), "paymentMethods");
+        createCsv(toModelSet(travels), "travels");
+        createCsv(toModelSet(travelSales), "travelSales");
+    }
 
+    private Set<Model> toModelSet(Set<? extends Model> set) {
+        return set.stream().map(v -> (Model)v).collect(Collectors.toSet());
     }
 }
