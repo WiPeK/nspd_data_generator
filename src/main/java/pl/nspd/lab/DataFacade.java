@@ -11,24 +11,25 @@ import java.io.PrintWriter;
 import java.util.Set;
 
 import static com.sun.activation.registries.LogSupport.log;
+import static pl.nspd.common.util.CsvGenerator.createCsv;
 
 public class DataFacade {
 
-    public static Set<Quarter> quarters;
-    public static Set<Author> authors;
-    public static Set<Category> categories;
-    public static Set<Channel> channels;
-    public static Set<Client> clients;
-    public static Set<DayOfWeek> dayOfWeeks;
-    public static Set<SaleDate> saleDates;
-    public static Set<SaleYear> years;
-    public static Set<Month> months;
-    public static Set<Employee> employees;
-    public static Set<Producer> producers;
-    public static Set<Payment> payments;
-    public static Set<Product> products;
-    public static Set<Invoice> invoices;
-    public static Set<Sale> sales;
+    private static Set<Quarter> quarters;
+    private static Set<Author> authors;
+    private static Set<Category> categories;
+    private static Set<Channel> channels;
+    private static Set<Client> clients;
+    private static Set<DayOfWeek> dayOfWeeks;
+    private static Set<SaleDate> saleDates;
+    private static Set<SaleYear> years;
+    private static Set<Month> months;
+    private static Set<Employee> employees;
+    private static Set<Producer> producers;
+    private static Set<Payment> payments;
+    private static Set<Product> products;
+    private static Set<Invoice> invoices;
+    private static Set<Sale> sales;
 
     public void generate() {
         generateData();
@@ -72,20 +73,7 @@ public class DataFacade {
         createCsv((Set<Model>) (Object) sales, "sales");
     }
 
-    private void createCsv(Set<Model> models, String name) {
-        File dir = makeBaseDir();
-        try (PrintWriter out = new PrintWriter(dir + "/" + name + ".csv")) {
-            models.forEach(model -> out.println(model.toCsv()));
-        } catch (FileNotFoundException x) {
-            log(x.toString());
-        }
-    }
 
-    private File makeBaseDir() {
-        File dir = new File("CSV files");
-        dir.mkdir();
-        return dir;
-    }
 
 }
 

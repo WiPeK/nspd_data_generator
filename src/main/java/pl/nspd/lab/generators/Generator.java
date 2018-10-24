@@ -10,6 +10,8 @@ import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static pl.nspd.common.data.AddressData.addresses;
+import static pl.nspd.common.util.GeneratorUtil.randomFromArray;
+import static pl.nspd.common.util.GeneratorUtil.randomFromSet;
 import static pl.nspd.lab.data.AliasData.aliases;
 import static pl.nspd.lab.data.EmailData.emails;
 import static pl.nspd.common.data.NameData.names;
@@ -20,18 +22,6 @@ import static pl.nspd.common.data.SurnameData.surnames;
 
 public class Generator {
     private static Random random = new Random();
-
-    public static String id() {
-        return UUID.randomUUID().toString();
-    }
-
-    public static String name() {
-        return randomFromArray(names);
-    }
-
-    public static String surname() {
-        return randomFromArray(surnames);
-    }
 
     public static String alias() {
         return randomFromArray(aliases);
@@ -55,10 +45,6 @@ public class Generator {
 
     public static String productName() {
         return randomFromArray(productNames);
-    }
-
-    private static String randomFromArray(String[] array) {
-        return array[random.nextInt(array.length)];
     }
 
     public static int dayOfWeek(Set<DayOfWeek> daysOfWeek) {
@@ -128,10 +114,6 @@ public class Generator {
         return LocalDate.ofEpochDay(randomDay);
     }
 
-    public static double randomSalary() {
-        return 2000.00 + random.nextInt(2000) / 1.00;
-    }
-
     public static double randomPrice() {
         return 1.00 + random.nextInt(2000) / 1.00;
     }
@@ -140,7 +122,5 @@ public class Generator {
         return 1 + random.nextInt(100);
     }
 
-    public static <T> T randomFromSet(Set<T> set) {
-        return set.stream().skip(Math.abs(random.nextInt() % set.size())).findFirst().get();
-    }
+
 }

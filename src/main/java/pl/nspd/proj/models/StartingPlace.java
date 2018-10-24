@@ -7,12 +7,12 @@ import static pl.nspd.common.Constants.SEPARATOR;
 
 @Data
 public class StartingPlace implements Model {
-    private final String id;
-    private final String continent;
-    private final String country;
+    public final String id;
+    public final String city;
+    public final String street;
 
     @Override
     public String toCsv() {
-        return id + SEPARATOR + continent + SEPARATOR + country;
+        return id + SEPARATOR + city + SEPARATOR + street;
     }
 }
