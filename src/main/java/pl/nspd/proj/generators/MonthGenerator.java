@@ -9,10 +9,11 @@ import static pl.nspd.common.util.GeneratorUtil.id;
 
 public class MonthGenerator {
     public static Set<Month> generate(Set<Year> years) {
-        int monthNumber = 1;
         Set<Month> months = new HashSet<>();
         for (Year year : years) {
-            months.add(new Month(id(), (monthNumber++)%12, year.id));
+            for (int i = 0; i < 12; i++) {
+                months.add(new Month(id(), i+1, year.id));
+            }
         }
         return months;
     }
