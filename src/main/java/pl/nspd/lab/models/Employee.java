@@ -20,11 +20,12 @@ public class Employee implements Model {
     public final double salary;
 
     public String toCsv() {
-        return id + SEPARATOR
-                + name + SEPARATOR
-                + surname + SEPARATOR
-                + address + SEPARATOR
-                + email + SEPARATOR
+        return id.replace(",", "")
+                + SEPARATOR
+                + name.replace(",", "") + SEPARATOR
+                + surname.replace(",", "") + SEPARATOR
+                + address.replace(",", "") + SEPARATOR
+                + email.replace(",", "") + SEPARATOR
                 + dateOfEmployment + SEPARATOR
                 + round(salary);
     }

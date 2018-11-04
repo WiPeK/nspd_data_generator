@@ -16,11 +16,12 @@ public class Product implements Model {
     public final double price;
 
     public String toCsv() {
-        return id + SEPARATOR
+        return id +
+                SEPARATOR
                 + categoryId + SEPARATOR
                 + producerId + SEPARATOR
                 + authorId + SEPARATOR
-                + name + SEPARATOR
+                + name.replace(",", "") + SEPARATOR
                 + DecimalUtil.round(price);
     }
 }

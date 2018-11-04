@@ -11,6 +11,6 @@ public class DayOfWeek implements Model {
     public final String name;
 
     public String toCsv() {
-        return id + SEPARATOR + name;
+        return id + SEPARATOR + name.replace(",", "");
     }
 }

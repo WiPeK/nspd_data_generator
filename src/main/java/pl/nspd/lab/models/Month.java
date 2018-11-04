@@ -11,6 +11,6 @@ public class Month implements Model {
     public final String month;
 
     public String toCsv() {
-        return id + SEPARATOR + month;
+        return id + SEPARATOR + month.replace(",", "");
     }
 }

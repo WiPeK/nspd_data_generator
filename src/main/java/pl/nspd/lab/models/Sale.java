@@ -18,7 +18,8 @@ public class Sale implements Model {
     public final String invoiceId;
 
     public String toCsv() {
-        return id + SEPARATOR
+        return id +
+                SEPARATOR
                 + channelId + SEPARATOR
                 + employeeId + SEPARATOR
                 + saleDateId + SEPARATOR

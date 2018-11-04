@@ -11,6 +11,6 @@ public class Payment implements Model {
     public final String type;
 
     public String toCsv() {
-        return id + SEPARATOR + type;
+        return id.replace(",", "") + SEPARATOR + type.replace(",", "");
     }
 }

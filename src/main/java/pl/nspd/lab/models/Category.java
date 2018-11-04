@@ -11,6 +11,6 @@ public class Category implements Model {
     public final String name;
 
     public String toCsv() {
-        return id + SEPARATOR + name;
+        return id.replace(",", "") + SEPARATOR + name.replace(",", "");
     }
 }

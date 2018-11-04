@@ -15,11 +15,12 @@ public class Client implements Model {
     public final String email;
 
     public String toCsv() {
-        return id + SEPARATOR
-                + name + SEPARATOR
-                + surname + SEPARATOR
-                + address + SEPARATOR
-                + phone + SEPARATOR
-                + email;
+        return id.replace(",", "") +
+                SEPARATOR
+                + name.replace(",", "") + SEPARATOR
+                + surname.replace(",", "") + SEPARATOR
+                + address.replace(",", "") + SEPARATOR
+                + phone.replace(",", "") + SEPARATOR
+                + email.replace(",", "");
     }
 }

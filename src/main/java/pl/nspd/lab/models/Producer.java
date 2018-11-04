@@ -12,6 +12,6 @@ public class Producer implements Model {
     public final String address;
 
     public String toCsv() {
-        return id + SEPARATOR + name + SEPARATOR + address;
+        return id + SEPARATOR + name.replace(",", "") + SEPARATOR + address.replace(",", "");
     }
 }

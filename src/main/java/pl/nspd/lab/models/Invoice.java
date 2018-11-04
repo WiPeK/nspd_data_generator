@@ -14,7 +14,8 @@ public class Invoice implements Model {
     public final double discount;
 
     public String toCsv() {
-        return id + SEPARATOR
+        return id
+                + SEPARATOR
                 + round(resultPrice) + SEPARATOR
                 + round(taxValue) + SEPARATOR
                 + round(discount);

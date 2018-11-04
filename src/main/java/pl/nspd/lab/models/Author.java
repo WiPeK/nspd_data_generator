@@ -13,6 +13,6 @@ public class Author implements Model {
     public final String alias;
 
     public String toCsv() {
-        return id + SEPARATOR + name + surname + SEPARATOR + alias;
+        return id.replace(",", "") + SEPARATOR + name.replace(",", "") + SEPARATOR + surname.replace(",", "") + SEPARATOR + alias.replace(",", "");
     }
 }
