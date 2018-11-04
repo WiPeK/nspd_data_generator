@@ -12,11 +12,17 @@ public class Employee implements Model {
     public final String surname;
     public final String gender;
     public final double salary;
-    public final String branchId;
-
 
     @Override
     public String toCsv() {
-        return id + SEPARATOR + name + SEPARATOR + surname + SEPARATOR + gender + salary + SEPARATOR + branchId;
+        return id +
+                SEPARATOR +
+                name +
+                SEPARATOR +
+                surname +
+                SEPARATOR +
+                gender +
+                SEPARATOR +
+                salary;
     }
 }

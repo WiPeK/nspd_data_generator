@@ -15,6 +15,7 @@ public class TravelSale implements Model {
     public final String boughtChannelId;
     public final String paymentMethodId;
     public final double totalPrice;
+    public final String branchId;
 
     @Override
     public String toCsv() {
@@ -33,6 +34,8 @@ public class TravelSale implements Model {
                         SEPARATOR +
                         paymentMethodId +
                         SEPARATOR +
-                        totalPrice;
+                        totalPrice +
+                        SEPARATOR +
+                        branchId;
     }
 }
