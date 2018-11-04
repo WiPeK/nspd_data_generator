@@ -93,8 +93,8 @@ public class Generator {
         return randomFromSet(travels).id;
     }
 
-    public static String boughtChannel(Set<BoughtChannel> boughtChannels) {
-        return randomFromSet(boughtChannels).id;
+    public static BoughtChannel boughtChannel(Set<BoughtChannel> boughtChannels) {
+        return randomFromSet(boughtChannels);
     }
 
     public static String paymentMethod(Set<PaymentMethod> paymentMethods) {

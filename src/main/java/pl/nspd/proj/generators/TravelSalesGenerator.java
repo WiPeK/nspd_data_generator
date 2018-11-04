@@ -1,8 +1,10 @@
 package pl.nspd.proj.generators;
 
 import pl.nspd.common.util.DecimalUtil;
+import pl.nspd.proj.data.BoughtChannelData;
 import pl.nspd.proj.models.*;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -47,33 +49,50 @@ public class TravelSalesGenerator {
 
             boolean isDayBeforeTravel = false;
             Day day = dayObj(days);
-//            while(!isDayBeforeTravel) {
-//                day = dayObj(days);
-//                Day finalDay = day;
-//                Month month = months.stream().filter(mnth -> mnth.id.equals(finalDay.monthId)).findFirst().get();
-//                Year year = years.stream().filter(yr -> yr.id.equals(month.yearId)).findFirst().get();
-//                if (LocalDate.of(year.year, month.month, day.day).isBefore(travel.startDate)) {
-//                    isDayBeforeTravel = true;
-//                }
-//            }
+            while(!isDayBeforeTravel) {
+                day = dayObj(days);
+                Day finalDay = day;
+                Month month = months.stream().filter(mnth -> mnth.id.equals(finalDay.monthId)).findFirst().get();
+                Year year = years.stream().filter(yr -> yr.id.equals(month.yearId)).findFirst().get();
+                LocalDate saleDate = LocalDate.of(year.year, month.month, day.day);
+                boolean isBefore = saleDate.isBefore(travel.startDate);
+                System.out.println("Travel date: " + travel.startDate + " Sale date: " + saleDate + " is before: " + isBefore);
+                if (isBefore || isFirstDay(travel.startDate)) {
+                    isDayBeforeTravel = true;
+                }
+            }
 
-            Object[] entries = brnEmployees.entrySet().toArray();
-            Map.Entry<Branch, Set<Employee>> randBrn = (Map.Entry<Branch, Set<Employee>>)randomFromArray(entries);
-            Branch branch = randBrn.getKey();
+            String branchId = null;
+            String employeeId = null;
+            BoughtChannel boughtChannel = boughtChannel(boughtChannels);
+            if (boughtInBranch(boughtChannel)) {
+                Object[] entries = brnEmployees.entrySet().toArray();
+                Map.Entry<Branch, Set<Employee>> randBrn = (Map.Entry<Branch, Set<Employee>>)randomFromArray(entries);
+                branchId = randBrn.getKey().id;
+                employeeId = employee(randBrn.getValue());
+            }
 
             travelSales.add(new TravelSale(
                     id(),
-                    employee(randBrn.getValue()),
+                    employeeId,
                     customer(customers),
                     day.id,
                     travelId,
-                    boughtChannel(boughtChannels),
+                    boughtChannel.id,
                     paymentMethod(paymentMethods),
                     DecimalUtil.round(travel.price * 1.23),
-                    branch.id
+                    branchId
             ));
         }
 
         return travelSales;
+    }
+
+    private static boolean boughtInBranch(BoughtChannel boughtChannel) {
+        return BoughtChannelData.BRANCH.getValue().equals(boughtChannel.boughtChannel);
+    }
+
+    private static boolean isFirstDay(LocalDate localDate) {
+        return LocalDate.of(2013, 1, 1).equals(localDate);
     }
 }
