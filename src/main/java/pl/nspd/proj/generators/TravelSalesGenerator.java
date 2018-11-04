@@ -3,13 +3,16 @@ package pl.nspd.proj.generators;
 import pl.nspd.common.util.DecimalUtil;
 import pl.nspd.proj.models.*;
 
-import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
-import static pl.nspd.common.util.GeneratorUtil.id;
+
+import static pl.nspd.common.util.GeneratorUtil.*;
 import static pl.nspd.proj.generators.Generator.*;
 
 public class TravelSalesGenerator {
+    @SuppressWarnings("unchecked")
     public static Set<TravelSale> generate(
         Set<Employee> employees,
         Set<Customer> customers,
@@ -18,9 +21,24 @@ public class TravelSalesGenerator {
         Set<Year> years,
         Set<Travel> travels,
         Set<BoughtChannel> boughtChannels,
-        Set<PaymentMethod> paymentMethods
+        Set<PaymentMethod> paymentMethods,
+        Set<Branch> branches
     ) {
         Set<TravelSale> travelSales = new HashSet<>();
+        // persons to branches
+
+        Map<Branch, Set<Employee>> brnEmployees = new HashMap<>();
+        Set<Employee> tmpEmployees = new HashSet<>(employees);
+        for (Branch branch : branches) {
+            Employee empl1 = randomFromSet(tmpEmployees);
+            Employee empl2 = randomFromSet(tmpEmployees);
+            Set<Employee> brnEmpls = new HashSet<>();
+            brnEmpls.add(empl1);
+            brnEmpls.add(empl2);
+            brnEmployees.put(branch, brnEmpls);
+            tmpEmployees.remove(empl1);
+            tmpEmployees.remove(empl2);
+        }
 
         for (int i = 0; i < travels.size() - 433; i++) {
 
@@ -39,15 +57,20 @@ public class TravelSalesGenerator {
 //                }
 //            }
 
+            Object[] entries = brnEmployees.entrySet().toArray();
+            Map.Entry<Branch, Set<Employee>> randBrn = (Map.Entry<Branch, Set<Employee>>)randomFromArray(entries);
+            Branch branch = randBrn.getKey();
+
             travelSales.add(new TravelSale(
                     id(),
-                    employee(employees),
+                    employee(randBrn.getValue()),
                     customer(customers),
                     day.id,
                     travelId,
                     boughtChannel(boughtChannels),
                     paymentMethod(paymentMethods),
-                    DecimalUtil.round(travel.price * 1.23)
+                    DecimalUtil.round(travel.price * 1.23),
+                    branch.id
             ));
         }
 

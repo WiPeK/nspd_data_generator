@@ -38,6 +38,10 @@ public class GeneratorUtil {
         return array[random.nextInt(array.length)];
     }
 
+    public static Object randomFromArray(Object[] array) {
+        return array[random.nextInt(array.length)];
+    }
+
     public static double randomSalary() {
         return 2000.00 + random.nextInt(2000) / 1.00;
     }

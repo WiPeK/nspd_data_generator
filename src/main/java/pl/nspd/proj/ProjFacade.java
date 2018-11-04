@@ -39,8 +39,7 @@ public class ProjFacade {
         boughtChannels = BoughtChannelGenerator.generate();
         branchAddresses = BranchAddressGenerator.generate();
         branches = BranchGenerator.generate(branchAddresses);
-        employees = EmployeeGenerator.generate(branches);
-        employees.addAll(EmployeeGenerator.generate(branches));
+        employees = EmployeeGenerator.generate();
         customerAddresses = CustomerAddressGenerator.generate();
         customers = CustomerGenerator.generate(customerAddresses);
         travelTypes = TravelTypeGenerator.generate();
@@ -48,25 +47,25 @@ public class ProjFacade {
         startingPlaces = StartingPlaceGenerator.generate(branchAddresses);
         paymentMethods = PaymentMethodGenerator.generate();
         travels = TravelGenerator.generate(travelDestinations, travelTypes, startingPlaces, days, months, years);
-        travelSales = TravelSalesGenerator.generate(employees, customers, days, months, years, travels, boughtChannels, paymentMethods);
+        travelSales = TravelSalesGenerator.generate(employees, customers, days, months, years, travels, boughtChannels, paymentMethods, branches);
     }
 
     private void generateCsv() {
-        createCsv(toModelSet(years), "proj/years");
-        createCsv(toModelSet(months), "proj/months");
-        createCsv(toModelSet(days), "proj/days");
-        createCsv(toModelSet(boughtChannels), "proj/boughtChannels");
-        createCsv(toModelSet(branchAddresses), "proj/branchAddresses");
-        createCsv(toModelSet(branches), "proj/branches");
-        createCsv(toModelSet(employees), "proj/employees");
-        createCsv(toModelSet(customerAddresses), "proj/customerAddresses");
-        createCsv(toModelSet(customers), "proj/customers");
-        createCsv(toModelSet(travelTypes), "proj/travelTypes");
-        createCsv(toModelSet(travelDestinations), "proj/travelDestinations");
-        createCsv(toModelSet(startingPlaces), "proj/startingPlaces");
-        createCsv(toModelSet(paymentMethods), "proj/paymentMethods");
-        createCsv(toModelSet(travels), "proj/travels");
-        createCsv(toModelSet(travelSales), "proj/travelSales");
+        createCsv(toModelSet(years), "years");
+        createCsv(toModelSet(months), "months");
+        createCsv(toModelSet(days), "days");
+        createCsv(toModelSet(boughtChannels), "boughtChannels");
+        createCsv(toModelSet(branchAddresses), "branchAddresses");
+        createCsv(toModelSet(branches), "branches");
+        createCsv(toModelSet(employees), "employees");
+        createCsv(toModelSet(customerAddresses), "customerAddresses");
+        createCsv(toModelSet(customers), "customers");
+        createCsv(toModelSet(travelTypes), "travelTypes");
+        createCsv(toModelSet(travelDestinations), "travelDestinations");
+        createCsv(toModelSet(startingPlaces), "startingPlaces");
+        createCsv(toModelSet(paymentMethods), "paymentMethods");
+        createCsv(toModelSet(travels), "travels");
+        createCsv(toModelSet(travelSales), "travelSales");
     }
 
     private Set<Model> toModelSet(Set<? extends Model> set) {
