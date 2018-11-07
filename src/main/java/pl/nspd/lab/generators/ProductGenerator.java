@@ -15,7 +15,12 @@ import static pl.nspd.common.util.GeneratorUtil.id;
 public class ProductGenerator {
     public static Set<Product> generate(Set<Category> categories, Set<Producer> producers, Set<Author> authors) {
         return IntStream.range(0, 1001)
-                .mapToObj(any -> new Product(id(), category(categories), producer(producers), author(authors), productName(), randomPrice()))
+                .mapToObj(any -> new Product(id(), category(categories), producer(producers), author(authors), cutString(productName()), randomPrice()))
                 .collect(Collectors.toSet());
+    }
+
+    private static String cutString(String val) {
+        String name = productName();
+        return name.length() > 50 ? name.substring(0, 50) : name;
     }
 }

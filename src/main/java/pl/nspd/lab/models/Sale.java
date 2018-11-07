@@ -20,7 +20,7 @@ public class Sale implements Model {
     public String toCsv() {
         return id +
                 SEPARATOR
-                + channelId + SEPARATOR
+                + clientId + SEPARATOR
                 + employeeId + SEPARATOR
                 + saleDateId + SEPARATOR
                 + productId + SEPARATOR
