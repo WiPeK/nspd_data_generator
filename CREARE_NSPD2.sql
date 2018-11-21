@@ -368,5 +368,9 @@ GO
 --SKIP Index: [fkIdx_116]
 
 
-
+INSERT INTO EMPLOYEE (EMPLOYEE_ID, NAME, SURNAME, GENDER, SALARY) VALUES('d967d32b-8ea6-4f7a-aa4d-b14280540740', 'ONLINE', 'ONLINE', 'N', 0.0);
+insert into BRANCH_ADDRESS(branch_address_id, country, city, street) values ('bf112bb9-1276-4f67-80c7-e614362900ce', 'ONLINE', 'ONLINE', 'ONLINE');
+insert into BRANCH(BRANCH_ID, NAME, BRANCH_ADDRESS_ID) VALUES ('bf112bb9-1276-4f67-80c7-e614362900ce', 'ONLINE', 'bf112bb9-1276-4f67-80c7-e614362900ce');
+-- wykonać po załadowaniu danych
+--update TRAVEL_SALE set EMPLOYEE_ID = 'd967d32b-8ea6-4f7a-aa4d-b14280540740', BRANCH_ID = 'bf112bb9-1276-4f67-80c7-e614362900ce' WHERE EMPLOYEE_ID is null and BRANCH_ID is null;
 
